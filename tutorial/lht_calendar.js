@@ -5,7 +5,7 @@
    Tutorial 10
    Tutorial Case
 
-   Author: Your Name Here
+   Author: Todd Nash
    Date:  2023-10-10
 
    Filename:   lht_calendar.js  
@@ -31,7 +31,7 @@
 */
 
 // Set the date displayed in the calendar 
-var thisDay = new Date("August 24, 2028");
+var thisDay = new Date("August 24, 2018");
 
 //Write the calendar to the element with the id "calendar"
 document.getElementById("calendar").innerHTML = createCalendar(thisDay);
@@ -39,16 +39,44 @@ document.getElementById("calendar").innerHTML = createCalendar(thisDay);
 //Function to generate the calendar
 function createCalendar(calDate){
    var calendarHTML = "<table id='calendar_table'>";
+   calendarHTML += calCaption(calDate);
    calendarHTML += '</table>';
    return calendarHTML;
 }
+
+
 
 //Function to write the calendar caption 
 
 function calCaption(calDate){
 
    //monthName arrays contains the list of month names
-var monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+   var monthName = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+   //Determine the current month
+   var thisMonth = calDate.getMonth();
+
+   //Determine the current year
+   var thisYear = calDate.getFullYear();
+
+   //Write the caption
+   return "<caption>" + monthName[thisMonth] + " " + thisYear + "</caption>";
+
+
+}
+
+
+//Function to write a table row of weekday abbr
+
+function calWeekdayRow() {
+//Array of weekday abbreviations
+var dayName = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
+var rowHTML = "<tr>";
+//Loop through the dayName array
+for (var i = 0; i < dayName.length; i++){
+  rowHTML += "<th class='calendar_weekdays'>" + dayNames[i] + "</th>" 
+}
 
 
 }
