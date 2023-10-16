@@ -5,8 +5,8 @@
    Tutorial 10
    Tutorial Case
 
-   Author: Todd Nash
-   Date:  2023-10-10
+   Author: Your Name Here
+   Date:  Today's Date Here
 
    Filename:   lht_calendar.js  
 
@@ -40,6 +40,7 @@ document.getElementById("calendar").innerHTML = createCalendar(thisDay);
 function createCalendar(calDate){
    var calendarHTML = "<table id='calendar_table'>";
    calendarHTML += calCaption(calDate);
+   calendarHTML += calWeekdayRow();
    calendarHTML += '</table>';
    return calendarHTML;
 }
@@ -71,17 +72,44 @@ function calCaption(calDate){
 function calWeekdayRow() {
 //Array of weekday abbreviations
 var dayName = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
-
 var rowHTML = "<tr>";
+
+
+
 //Loop through the dayName array
 for (var i = 0; i < dayName.length; i++){
-  rowHTML += "<th class='calendar_weekdays'>" + dayNames[i] + "</th>" 
+  rowHTML += "<th class='calendar_weekdays'>" + dayName[i] + "</th>" 
+}
+
+rowHTML += "/<tr>";
+return rowHTML;
+}
+
+// Function to calculate the number of days in the month
+
+function daysInMonth(calDate) {
+
+//Array of days in each month
+
+var dayCount = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+//index position 0, 1,  2,   3, 4,  5,  6,  7,  8,  9,  10, 11  which correspond to month #
+
+//Extract 4 digits of the year and month value
+
+var thisYear = calDate.getFullYear();
+var thisMonth = calDate.getMonth();
+
+//Revise the days in February for leap years
+if(thisYear % 4 === 0){
+
+   if((thisYear % 100 != 0) || (thisYear % 400 === 0)){
+      dayCount[1] = 29;
+   }
+
 }
 
 
+//Return the number of days for the current month
+return dayCount[thisMonth];
+
 }
-
-
-
-
-
